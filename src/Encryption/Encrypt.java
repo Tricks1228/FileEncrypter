@@ -11,6 +11,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+import FileIO.EncryptedFileWriter;
 import FileIO.PlainTextReader;
 import Key.SecretKeyHandler;
 
@@ -19,6 +20,7 @@ public class Encrypt {
     private File file;
     private Cipher cipher;
     private SecretKey key;
+    private byte[] encryptedData;
 
     /**
      * Stores the file for class use. Also creates and initializes the cipher using the algorithim
@@ -29,10 +31,15 @@ public class Encrypt {
      * @throws InvalidKeyException
      */
     public Encrypt(File file, String transformation) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+        System.out.println("[ENCRYPTION CONSTRUCTOR...]");
         this.file = file; // Store file for class use
+        this.key = getSecretKey(transformation); // Create the secret key
+        System.out.println("[SECRET KEY...]");
         cipher = EncryptionUtils.createCipher(transformation); // Create the cipher
-        this.key = getSecretKey(); // Create the secret key
+        System.out.println("[CIPHER CREATED...]");
         cipher.init(Cipher.ENCRYPT_MODE, key); // Initialize the Cipher
+        System.out.println("[CIPHER INITIALIZED...]");
+
     }
 
     /**
@@ -43,9 +50,17 @@ public class Encrypt {
      * @throws BadPaddingException
      */
     public byte[] applyEncryption() throws IOException, IllegalBlockSizeException, BadPaddingException {
+        System.out.println("[APPLYING ENCRYPTION...]");
         PlainTextReader text = new PlainTextReader(file); // Create the text reader
         byte[] plainText = text.getTextBytes(); // Get the byte data of the file
-        return cipher.doFinal(plainText); // Apply and return the encrypted bytes
+        System.out.println("[ENCRYPTION TO BE APPLIED...]");
+        encryptedData = cipher.doFinal(plainText); // Apply and return the encrypted bytes
+        return encryptedData;
+    }
+
+    public File getEncryptedFile() throws IllegalBlockSizeException, BadPaddingException, IOException {
+        System.out.println("[GETTING ENCRYPTED FILE...]");
+        return EncryptedFileWriter.createEncryptedFile(encryptedData);
     }
 
     /**
@@ -53,9 +68,10 @@ public class Encrypt {
      * @return the Secret key
      * @throws NoSuchAlgorithmException
      */
-    public SecretKey getSecretKey() throws NoSuchAlgorithmException {
-        SecretKeyHandler key = new SecretKeyHandler(cipher.getAlgorithm(), 128); 
+    public SecretKey getSecretKey(String transformation) throws NoSuchAlgorithmException {
+        SecretKeyHandler key = new SecretKeyHandler(transformation.substring(0, 3), 128); 
         key.init();
+        System.out.println("[SECRET KEY INITIALIZED...]");
         return key.getSecretKey();
     }
 }

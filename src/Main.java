@@ -63,6 +63,7 @@ public class Main {
 
         Encrypt encrypt = new Encrypt(file, transformation);
         encrypt.applyEncryption();
+        encrypt.getEncryptedFile();
     }
 
     private static void decrypt() {

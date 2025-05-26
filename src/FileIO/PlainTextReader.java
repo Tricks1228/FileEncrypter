@@ -14,10 +14,12 @@ public class PlainTextReader {
     }   
 
     public Path getFilePath() {
+        System.out.println("[GETTING FILE PATH...]");
         return Paths.get(file.getAbsolutePath());
     }
 
     public byte[] getTextBytes() throws IOException {
+        System.out.println("[GETTING FILE BYTES...]");
         return Files.readAllBytes(getFilePath());
     }
 }
