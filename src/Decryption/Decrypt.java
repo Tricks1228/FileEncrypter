@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 import FileIO.Base64Handler;
 import FileIO.DecryptedFileWriter;
@@ -20,7 +21,9 @@ public class Decrypt {
         this.file = file; // Store file for class use
         cipher = DecryptionUtils.createCipher(transformation); // Create the cipher
         System.out.println(">DECRYPTION CIPHER CREATED...");
-        cipher.init(Cipher.DECRYPT_MODE, key); // Initialize the Cipher
+
+        IvParameterSpec iv = new IvParameterSpec(new byte[16]);
+        cipher.init(Cipher.DECRYPT_MODE, key, iv); // Initialize the Cipher
         System.out.println(">DECRYPTION CIPHER INITIALIZED...");
     }
 
