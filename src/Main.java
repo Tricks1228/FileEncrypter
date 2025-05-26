@@ -1,12 +1,7 @@
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-import javax.crypto.NoSuchPaddingException;
-
 import Encryption.Encrypt;
-import Encryption.EncryptionUtils;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
@@ -62,8 +57,8 @@ public class Main {
         file = new File(path);
     }
 
-    private static void encrypt() throws NoSuchAlgorithmException, NoSuchPaddingException, FileNotFoundException {
-        System.out.println("Enter the desired Encyption Transformation");
+    private static void encrypt() throws Exception {
+        System.out.println("Enter the desired Encyption Transformation: ");
         String transformation = sc.next();
 
         Encrypt encrypt = new Encrypt(file, transformation);
