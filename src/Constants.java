@@ -1,3 +1,5 @@
 public class Constants {
-    // If Needed
+    public class EDConstants {
+
+    }
 }
