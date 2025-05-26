@@ -2,9 +2,18 @@ package FileIO;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class DecryptedFileWriter {
 
+    private DecryptedFileWriter() {} // Prevent class from being instantiated
+
+    /**
+     * Creates a new text file and writes the decrypted data to the file
+     * @param data Decrypted bytes
+     * @return txt file containing decrypted data
+     * @throws IOException
+     */
     public static File createDecryptedFile(byte[] data) throws Exception {
         System.out.println(">CREATING DECRYPTED FILE...");
         File decryptedText = new File("decrypted.txt"); // Create the new text file

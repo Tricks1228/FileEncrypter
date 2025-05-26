@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class EncryptedFileWriter {
 
-    private EncryptedFileWriter(byte[] data) {} // Prevent class from being instantiated
+    private EncryptedFileWriter() {} // Prevent class from being instantiated
 
     /**
      * Creates a new text file and writes the encrypted data to the file

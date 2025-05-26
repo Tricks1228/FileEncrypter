@@ -32,7 +32,7 @@ public class Decrypt {
         return decryptedData; // Return decrypted data
     }
 
-    public File getDecryptedFile() {
+    public File getDecryptedFile() throws Exception {
         System.out.println(">GETTING DECRYPTED FILE...");
         return DecryptedFileWriter.createDecryptedFile(decryptedData);
     }
