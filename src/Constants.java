@@ -1,5 +1,6 @@
 public class Constants {
-    public class EDConstants {
 
+    public static class EDK {
+        public static final int secretKeySize = 128;
     }
 }

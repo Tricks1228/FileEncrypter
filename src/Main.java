@@ -1,5 +1,11 @@
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+
+import javax.crypto.NoSuchPaddingException;
+
+import Encryption.Encrypt;
+import Encryption.EncryptionUtils;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
@@ -23,14 +29,17 @@ public class Main {
             switch (selection) {
                 case 1: // Select
                     selectFile();
+                    System.out.println("=============" + "\n");
                     break;
 
                 case 2: // Encrypt
                     encrypt();
+                    System.out.println("=============" + "\n");
                     break;
 
                 case 3: // Decrypt
                     decrypt();
+                    System.out.println("=============" + "\n");
                     break;
 
                 case 4: // Quit
@@ -53,7 +62,11 @@ public class Main {
     }
 
     private static void encrypt() {
+        System.out.println("Enter the desired Encyption Transformation");
+        String transformation = sc.next();
 
+        Encrypt encrypt = new Encrypt(file, transformation);
+        encrypt.applyEncryption();
     }
 
     private static void decrypt() {
