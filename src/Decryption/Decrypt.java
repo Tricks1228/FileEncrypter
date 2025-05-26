@@ -17,14 +17,14 @@ public class Decrypt {
     private byte[] decryptedData;
 
     public Decrypt(File file, String transformation, SecretKey key) throws Exception {
-        System.out.println(">DECRYPTION CONSTRUCTOR...");
+        System.out.println("> DECRYPTION CONSTRUCTOR...");
         this.file = file; // Store file for class use
         cipher = DecryptionUtils.createCipher(transformation); // Create the cipher
-        System.out.println(">DECRYPTION CIPHER CREATED...");
+        System.out.println("> DECRYPTION CIPHER CREATED...");
 
         IvParameterSpec iv = new IvParameterSpec(new byte[16]);
         cipher.init(Cipher.DECRYPT_MODE, key, iv); // Initialize the Cipher
-        System.out.println(">DECRYPTION CIPHER INITIALIZED...");
+        System.out.println("> DECRYPTION CIPHER INITIALIZED...");
     }
 
     public byte[] applyDecryption() throws Exception {
@@ -36,7 +36,7 @@ public class Decrypt {
     }
 
     public File getDecryptedFile() throws Exception {
-        System.out.println(">GETTING DECRYPTED FILE...");
+        System.out.println("> GETTING DECRYPTED FILE...");
         return DecryptedFileWriter.createDecryptedFile(decryptedData);
     }
 }

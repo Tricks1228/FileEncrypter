@@ -29,13 +29,13 @@ public class Encrypt {
      * @throws InvalidKeyException
      */
     public Encrypt(File file, String transformation, SecretKey key) throws Exception {
-        System.out.println("[ENCRYPTION CONSTRUCTOR...]");
+        System.out.println("> ENCRYPTION CONSTRUCTOR...");
         this.file = file; // Store file for class use
-        System.out.println("[SECRET KEY...]");
+        System.out.println("> SECRET KEY...");
         cipher = EncryptionUtils.createCipher(transformation); // Create the cipher
-        System.out.println("[CIPHER CREATED...]");
+        System.out.println("> CIPHER CREATED...");
         cipher.init(Cipher.ENCRYPT_MODE, key); // Initialize the Cipher
-        System.out.println("[CIPHER INITIALIZED...]");
+        System.out.println("> CIPHER INITIALIZED...");
     }
 
     /**
@@ -46,16 +46,16 @@ public class Encrypt {
      * @throws BadPaddingException
      */
     public byte[] applyEncryption() throws Exception {
-        System.out.println("[APPLYING ENCRYPTION...]");
+        System.out.println("> APPLYING ENCRYPTION...");
         TextReader text = new TextReader(file); // Create the text reader
         byte[] plainText = text.getTextBytes(); // Get the byte data of the file
-        System.out.println("[ENCRYPTION TO BE APPLIED...]");
+        System.out.println("> ENCRYPTION TO BE APPLIED...");
         encryptedData = cipher.doFinal(plainText); // Apply and return the encrypted bytes
         return encryptedData;
     }
 
     public File getEncryptedFile() throws Exception {
-        System.out.println("[GETTING ENCRYPTED FILE...]");
+        System.out.println("> GETTING ENCRYPTED FILE...");
         return EncryptedFileWriter.createEncryptedFile(encryptedData);
     }
 }

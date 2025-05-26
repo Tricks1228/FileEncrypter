@@ -87,9 +87,10 @@ public class Main {
      * @throws NoSuchAlgorithmException
      */
     public static SecretKey createSecretKey(String transformation) throws NoSuchAlgorithmException {
+        System.out.println("> CREATING SECRET KEY");
         SecretKeyHandler key = new SecretKeyHandler(transformation.substring(0, 3), 128); 
         key.init();
-        System.out.println("[SECRET KEY INITIALIZED...]");
+        System.out.println("> SECRET KEY INITIALIZED...");
         return key.getSecretKey();
     }
 }
