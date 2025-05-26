@@ -6,10 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PlainTextReader {
+public class TextReader {
     private File file;
 
-    public PlainTextReader(File file) {
+    public TextReader(File file) {
         this.file = file;
     }   
 

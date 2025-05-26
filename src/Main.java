@@ -1,11 +1,17 @@
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
+import javax.crypto.SecretKey;
+
+import Decryption.Decrypt;
 import Encryption.Encrypt;
+import Key.SecretKeyHandler;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
     private static File file;
+    private static SecretKey key;
 
     public static void main(String[] args) throws Exception {
         
@@ -60,13 +66,30 @@ public class Main {
     private static void encrypt() throws Exception {
         System.out.println("Enter the desired Encyption Transformation: ");
         String transformation = sc.next();
-
-        Encrypt encrypt = new Encrypt(file, transformation);
+        key = createSecretKey(transformation);
+        Encrypt encrypt = new Encrypt(file, transformation, key);
         encrypt.applyEncryption();
         encrypt.getEncryptedFile();
     }
 
-    private static void decrypt() {
+    private static void decrypt() throws Exception {
+        System.out.println("Enter the desired Encyption Transformation: ");
+        String transformation = sc.next();
+        Decrypt decrypt = new Decrypt(file, transformation, key);
+        decrypt.applyDecryption();
+        decrypt.getDecryptedFile();
 
+    }
+
+    /**
+     * Generates and initializes the secret Key using the ciphers algorithim and key size of 128
+     * @return the Secret key
+     * @throws NoSuchAlgorithmException
+     */
+    public static SecretKey createSecretKey(String transformation) throws NoSuchAlgorithmException {
+        SecretKeyHandler key = new SecretKeyHandler(transformation.substring(0, 3), 128); 
+        key.init();
+        System.out.println("[SECRET KEY INITIALIZED...]");
+        return key.getSecretKey();
     }
 }
