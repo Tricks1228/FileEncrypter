@@ -18,8 +18,8 @@ public class TextReader {
         return Paths.get(file.getAbsolutePath());
     }
 
-    public byte[] getTextBytes() throws IOException {
+    public static byte[] getTextBytes(File file) throws IOException {
         System.out.println("> GETTING FILE BYTES...");
-        return Files.readAllBytes(getFilePath());
+        return Files.readAllBytes(Paths.get(file.getAbsolutePath()));
     }
 }

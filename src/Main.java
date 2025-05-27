@@ -12,6 +12,7 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
     private static File file;
     private static SecretKey key;
+    private static String transformation = "AES/CBC/PKCS5Padding";
 
     public static void main(String[] args) throws Exception {
         
@@ -27,6 +28,7 @@ public class Main {
             System.out.println("4. Quit");
             System.out.println("=============" + "\n");
             selection = sc.nextInt();
+            key = createSecretKey(transformation);
 
             switch (selection) {
                 case 1: // Select
@@ -64,17 +66,12 @@ public class Main {
     }
 
     private static void encrypt() throws Exception {
-        System.out.println("Enter the desired Encyption Transformation: ");
-        String transformation = sc.next();
-        key = createSecretKey(transformation);
         Encrypt encrypt = new Encrypt(file, transformation, key);
         encrypt.applyEncryption();
         encrypt.getEncryptedFile();
     }
 
     private static void decrypt() throws Exception {
-        System.out.println("Enter the desired Encyption Transformation: ");
-        String transformation = sc.next();
         Decrypt decrypt = new Decrypt(file, transformation, key);
         decrypt.applyDecryption();
         decrypt.getDecryptedFile();
