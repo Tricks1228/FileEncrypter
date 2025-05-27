@@ -12,7 +12,7 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
     private static File file;
     private static SecretKey key;
-    private static String transformation = "AES/CBC/PKCS5Padding";
+    private static String transformation = "AES/ECB/PKCS5Padding";
 
     public static void main(String[] args) throws Exception {
         

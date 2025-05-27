@@ -28,4 +28,8 @@ public class Base64Handler {
     public static String bytesToString(byte[] data) {
         return new String(data);
     }
+
+    public static byte[] cleanBase64(byte[] data) {
+        return bytesToString(data).replaceAll("[^A-Za-z0-9+/=]", "").getBytes();
+    }
 }

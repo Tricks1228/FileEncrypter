@@ -26,7 +26,7 @@ public class Decrypt {
     }
 
     public byte[] applyDecryption() throws Exception {
-        byte[] data = Base64Handler.getDecodedData(decryptedData); // Decode Base64
+        byte[] data = Base64Handler.getDecodedData(Base64Handler.cleanBase64(decryptedData)); // Decode Base64
         System.out.println("> BASE64 DECODED...");
 
         decryptedData = cipher.doFinal(data); // Decrypt
