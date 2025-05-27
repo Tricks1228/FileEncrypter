@@ -6,7 +6,6 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-import FileIO.Base64Handler;
 import FileIO.DecryptedFileWriter;
 import FileIO.TextReader;
 
