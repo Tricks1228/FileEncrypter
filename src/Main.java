@@ -1,4 +1,7 @@
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
@@ -19,6 +22,10 @@ public class Main {
         boolean runProgram = true;
         int selection = 0;
         key = createSecretKey(transformation);
+        Files.deleteIfExists(Paths.get("../encrypted.txt"));
+        System.out.println("> DELETED EXISTING ENCRYPTED.TXT");
+        Files.deleteIfExists(Paths.get("../decrypted.txt"));
+        System.out.println("> DELETING EXISTING DECRYPTED.TXT");
 
         while (runProgram) {
             System.out.println("=============");
@@ -26,7 +33,8 @@ public class Main {
             System.out.println("1. Select a File");
             System.out.println("2. Encrypt a File");
             System.out.println("3. Decrypt a File");
-            System.out.println("4. Quit");
+            System.out.println("4. Get the current selected file");
+            System.out.println("5. Quit");
             System.out.println("=============" + "\n");
             selection = sc.nextInt();
 
@@ -46,7 +54,12 @@ public class Main {
                     System.out.println("=============" + "\n");
                     break;
 
-                case 4: // Quit
+                case 4: // Get slected file
+                    System.out.println("File found at: " + file.getAbsolutePath());
+                    System.out.println("=============" + "\n");
+                    break;
+
+                case 5: // Quit
                     sc.close();
                     runProgram = false;
                     break;

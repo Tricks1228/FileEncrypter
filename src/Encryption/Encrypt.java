@@ -11,7 +11,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-import FileIO.Base64Handler;
 import FileIO.EncryptedFileWriter;
 import FileIO.TextReader;
 
