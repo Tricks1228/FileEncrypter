@@ -22,7 +22,7 @@ public class SecretKeyHandler {
      */
     public void init() throws NoSuchAlgorithmException {
         KeyGenerator generator = KeyGenerator.getInstance(algorithim);
-        System.out.println("[INITIALIZING SECRET KEY...]");
+        System.out.println("> INITIALIZING SECRET KEY...");
         generator.init(keySize);
         secretKey = generator.generateKey();
     }

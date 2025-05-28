@@ -29,7 +29,14 @@ public class Base64Handler {
         return new String(data);
     }
 
-    public static byte[] cleanBase64(byte[] data) {
-        return bytesToString(data).replaceAll("[^A-Za-z0-9+/=]", "").getBytes();
+    public static byte[] cleanBase64(byte[] data) { 
+        String base64 = bytesToString(data).replaceAll("[^A-Za-z0-9+/=]", "");
+
+        int padding = 4 - (base64.length() % 4);
+        if (padding < 4) {
+            base64 += "=".repeat(padding);
+        }
+        
+        return base64.getBytes();
     }
 }
