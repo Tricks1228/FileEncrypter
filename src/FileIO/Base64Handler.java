@@ -17,7 +17,7 @@ public class Base64Handler {
 
     public static String getDecodedString(byte[] data) {
         System.out.println("> GETTING DECODED STRING...");
-        return new String(data);
+        return new String(Base64.getDecoder().decode(data));
     }
 
     public static byte[] getDecodedData(byte[] data) {
@@ -31,12 +31,6 @@ public class Base64Handler {
 
     public static byte[] cleanBase64(byte[] data) { 
         String base64 = bytesToString(data).replaceAll("[^A-Za-z0-9+/=]", "");
-
-        int padding = 4 - (base64.length() % 4);
-        if (padding < 4) {
-            base64 += "=".repeat(padding);
-        }
-        
         return base64.getBytes();
     }
 }

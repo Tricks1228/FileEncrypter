@@ -3,6 +3,7 @@ package FileIO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class DecryptedFileWriter {
 
@@ -15,12 +16,15 @@ public class DecryptedFileWriter {
      * @throws IOException
      */
     public static File createDecryptedFile(byte[] data) throws Exception {
-        System.out.println("> CREATING DECRYPTED FILE...");
         File decryptedText = new File("decrypted.txt"); // Create the new text file
+        System.out.println("> DECRYPTED.TXT CREATED...");
+
         FileWriter writer = new FileWriter(decryptedText); // Create the writer
-        String plaintext = new String(data); // Create the plaintext using the decoded and decrypted data (done in Decrypt class)
         System.out.println("> WRITING TO DECRYPTED FILE...");
-        writer.write(plaintext); // Write to the new file
+
+        writer.write(new String(data, StandardCharsets.UTF_8)); // Write to the new file
+        System.out.println("> WRITING TO DECRYPTED FILE...");
+
         writer.close(); // Close the writer
         System.out.print("----" + "\n" + "Decrypted file found at: " + decryptedText.getAbsolutePath() + "\n" + "----" + "\n");
         return decryptedText;

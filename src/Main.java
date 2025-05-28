@@ -11,13 +11,14 @@ import Key.SecretKeyHandler;
 public class Main {
     private static Scanner sc = new Scanner(System.in);
     private static File file;
-    private static SecretKey key;
     private static String transformation = "AES/ECB/PKCS5Padding";
+    private static SecretKey key;
 
     public static void main(String[] args) throws Exception {
         
         boolean runProgram = true;
         int selection = 0;
+        key = createSecretKey(transformation);
 
         while (runProgram) {
             System.out.println("=============");
@@ -28,7 +29,6 @@ public class Main {
             System.out.println("4. Quit");
             System.out.println("=============" + "\n");
             selection = sc.nextInt();
-            key = createSecretKey(transformation);
 
             switch (selection) {
                 case 1: // Select
@@ -65,16 +65,18 @@ public class Main {
         file = new File(path);
     }
 
-    private static void encrypt() throws Exception {
+    private static File encrypt() throws Exception {
         Encrypt encrypt = new Encrypt(file, transformation, key);
         encrypt.applyEncryption();
-        encrypt.getEncryptedFile();
+        file = encrypt.getEncryptedFile();
+        return file;
     }
 
-    private static void decrypt() throws Exception {
+    private static File decrypt() throws Exception {
         Decrypt decrypt = new Decrypt(file, transformation, key);
         decrypt.applyDecryption();
-        decrypt.getDecryptedFile();
+        file = decrypt.getDecryptedFile();
+        return file;
 
     }
 

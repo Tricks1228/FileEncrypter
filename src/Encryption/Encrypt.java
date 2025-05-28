@@ -56,6 +56,6 @@ public class Encrypt {
     public File getEncryptedFile() throws Exception {
         System.out.println("> GETTING ENCRYPTED FILE...");
         
-        return EncryptedFileWriter.createEncryptedFile(Base64Handler.getEncodedData(encryptedFileData)); // Create the file using the already encoded data
+        return EncryptedFileWriter.createEncryptedFile(encryptedFileData); // Create the file using the encrypted data
     }
 }
